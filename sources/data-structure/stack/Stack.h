@@ -1,13 +1,18 @@
 #ifndef STACK_H_
 #define STACK_H_
 
-#include <iostream>
+#include <cstddef>
+#include <stdexcept>
 
+/**
+ * @tparam Object 항목 유형
+ * @tparam SIZE 스택의 최대 크기
+ */
 template <typename Object, size_t SIZE>
 class Stack {
  private:
-  Object stack_[SIZE];  // 항목이 저장될 공간
-  int top_;             // 가장 마지막에 넣은 항목을 참조
+  Object stack_[SIZE];  // 항목을 저장할 공간
+  int top_;             // 가장 최근에 입력한 항목을 참조
 
  public:
   /**
@@ -19,20 +24,18 @@ class Stack {
    * 스택에 항목을 추가한다.
    *
    * @param item 추가할 항목
-   * @return bool 성공 여부
    * @exception out_of_range 스택이 가득 찼을 때 호출하면 에러가 발생한다.
    */
-  void push(const Object &item) {
+  void Push(const Object &item) {
     // TODO: 코드 작성
   }
 
   /**
    * 스택에서 항목을 제거한다.
    *
-   * @return bool 성공 여부
    * @exception out_of_range 스택이 비어있을 때 호출하면 에러가 발생한다.
    */
-  void pop() {
+  void Pop() {
     // TODO: 코드 작성
   }
 
@@ -42,7 +45,7 @@ class Stack {
    * @return Object
    * @exception out_of_range 비어있는 스택에서 호출하면 에러를 발생한다.
    */
-  Object top() const {
+  Object Top() const {
     // TODO: 코드 작성
     return Object{};
   }
@@ -52,9 +55,9 @@ class Stack {
    *
    * @return bool
    */
-  bool empty() const {
+  bool Empty() const {
     // TODO: 코드 작성
-    return false;
+    return true;
   }
 
   /**
@@ -62,15 +65,15 @@ class Stack {
    *
    * @return bool
    */
-  bool full() const {
+  bool Full() const {
     // TODO: 코드 작성
-    return false;
+    return true;
   }
 
   /**
    * 스택을 비운다.
    */
-  void clear() {
+  void Clear() {
     // TODO: 코드 작성
   }
 };

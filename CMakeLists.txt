@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.10.0)
-project(coding-interview)
+project(
+  coding-interview
+  VERSION 0.1
+)
 
 set(CMAKE_CXX_STANDARD 11)
 include(FetchContent)
@@ -12,8 +15,8 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 enable_testing()
 
-include_directories("${PROJECT_SOURCE_DIR}/src")
-file(GLOB_RECURSE TEST_FILES src/*.test.cc)
+include_directories("${PROJECT_SOURCE_DIR}/sources")
+file(GLOB_RECURSE TEST_FILES "tests/*.test.cc")
 foreach(TEST_FILE ${TEST_FILES})
   get_filename_component(EXECUTABLE_FILE ${TEST_FILE} NAME_WE)
   set(EXECUTABLE_FILE "Test_${EXECUTABLE_FILE}")
