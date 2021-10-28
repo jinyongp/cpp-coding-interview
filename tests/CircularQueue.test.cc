@@ -42,15 +42,17 @@ TEST_F(CircularQueueTest, Circular) {
 
   cq0_.Dequeue();
   cq0_.Dequeue();
-  EXPECT_NO_THROW(cq0_.Enqueue(6));
+  ASSERT_NO_THROW(cq0_.Enqueue(6))
+      << "항목을 추가할 때 뒷 공간이 없으면 앞 공간의 빈 공백을 채워야 합니다.";
   EXPECT_NO_THROW(cq0_.Enqueue(7));
-  EXPECT_THROW(cq0_.Enqueue(7), std::out_of_range)
+  ASSERT_THROW(cq0_.Enqueue(7), std::out_of_range)
       << "최대 크기를 벗어나 항목을 추가하면 에러가 발생해야 합니다.";
-  cq0_.Dequeue();
+  ASSERT_NO_THROW(cq0_.Dequeue())
+      << "앞에서부터 다시 채워진 항목을 제거할 수 있어야 합니다.";
   cq0_.Dequeue();
   EXPECT_NO_THROW(cq0_.Enqueue(8));
   EXPECT_NO_THROW(cq0_.Enqueue(9));
-  EXPECT_THROW(cq0_.Enqueue(10), std::out_of_range)
+  ASSERT_THROW(cq0_.Enqueue(10), std::out_of_range)
       << "최대 크기를 벗어나 항목을 추가하면 에러가 발생해야 합니다.";
 }
 
@@ -88,6 +90,12 @@ TEST_F(CircularQueueTest, Back) {
   cq0_.Dequeue();  // 2
   cq0_.Enqueue(4);
   ASSERT_EQ(cq0_.Back(), 4) << "가장 최근에 입력한 항목을 출력해야 합니다.";
+}
+
+TEST_F(CircularQueueTest, Empty) {
+  ASSERT_TRUE(cq0_.Empty());
+  MakeFull();
+  ASSERT_FALSE(cq0_.Empty());
 }
 
 TEST_F(CircularQueueTest, Full) {
