@@ -55,11 +55,16 @@ make init
 - 코드를 수정하고, `make` 명령어를 실행하면 빌드가 완료됩니다.
 - `make test` 명령어로 테스트를 할 수 있습니다. 혹은, 좌측 Testing 탭(C++ TestMate)에서 개별 테스트가 가능합니다.
 - `tests` 폴더 내에 있는 `*.test.cc` 파일을 확인하여 어느 부분에서 문제가 있는건지 볼 수 있습니다.
+- `keys` 폴더에서 모든 테스트를 통과하는 코드를 확인할 수 있습니다.
 
-### Notes
+## Notes
 
 - 예제 코드는 간결함을 위해 기본 라이브러리 및 `std` 작성을 생략합니다.
 - 모든 코드는 [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)를 준수합니다.
 - 코드 스타일을 수정하고 싶다면, [Clang-Format Style Options](https://clang.llvm.org/docs/ClangFormatStyleOptions.html)를 참고하여 [`.clang-format`](./.clang-format)에 적용하세요.
 - C++ 테스트를 위해 [GoogleTest Framework](https://github.com/google/googletest)를 적용했습니다.
 - 프로젝트 빌드를 위해 [`cmake`](https://cmake.org/)와 `makefile`을 사용합니다.
+
+## Reference
+
+- [GeeksForGeeks Practice Problems](https://practice.geeksforgeeks.org/explore/?page=1)
