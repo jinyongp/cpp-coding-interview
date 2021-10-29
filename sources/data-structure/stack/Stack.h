@@ -1,8 +1,7 @@
 #ifndef STACK_H_
 #define STACK_H_
 
-#include <cstddef>
-#include <stdexcept>
+#include <iostream>
 
 /**
  * @tparam Object 항목 유형

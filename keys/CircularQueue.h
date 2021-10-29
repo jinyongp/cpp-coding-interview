@@ -1,8 +1,7 @@
 #if !defined(CIRCULAR_QUEUE_H_)
 #define CIRCULAR_QUEUE_H_
 
-#include <cstddef>
-#include <stdexcept>
+#include <iostream>
 
 /**
  * EXAMPLE: SIZE{5}(+1)
