@@ -1,3 +1,5 @@
+[← Data Stucture Theory](../README.md)
+
 # Stack
 > 선입후출의 데이터 관리 정책을 따르는 자료구조이다.
 

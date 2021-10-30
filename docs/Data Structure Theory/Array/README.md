@@ -1,3 +1,5 @@
+[← Data Stucture Theory](../README.md)
+
 # Array
 
 > 데이터를 나열하고, 각 데이터를 인덱스에 대응하도록 구성한 자료구조이다.

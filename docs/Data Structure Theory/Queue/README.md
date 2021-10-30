@@ -1,3 +1,5 @@
+[← Data Stucture Theory](../README.md)
+
 # Queue
 
 ## Linear Queue

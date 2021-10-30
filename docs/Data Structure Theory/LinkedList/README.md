@@ -1,3 +1,5 @@
+[← Data Stucture Theory](../README.md)
+
 # Linked List
 
 > 메모리 상에 따로 떨어진 공간에 존재하는 데이터가 연결된 상태로 존재하는 자료구조이다.
