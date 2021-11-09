@@ -2,5 +2,10 @@
   "cmake.configureOnOpen": false,
   "cmake.configureOnEdit": false,
   "C_Cpp.clang_format_style": "file",
-  "C_Cpp.clang_format_path": "/absolute/path/to/clang-format"
+  "C_Cpp.clang_format_path": "/opt/homebrew/bin/clang-format",
+  "clang.cxxflags": [
+    "-std=c++20",
+    "-I${workspaceRoot}/build/_deps/googletest-src/googletest/include",
+    "-I${workspaceRoot}/build/_deps/googletest-src/googlemock/include"
+  ]
 }

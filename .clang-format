@@ -1,4 +1,8 @@
+---
 BasedOnStyle: Google
-AllowShortBlocksOnASingleLine: Empty
+---
+Language: Cpp
+AllowShortBlocksOnASingleLine: Never
 AllowShortFunctionsOnASingleLine: Empty
 AllowShortIfStatementsOnASingleLine: AllIfsAndElse
+ReflowComments: false
