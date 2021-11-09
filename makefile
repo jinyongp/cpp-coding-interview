@@ -2,13 +2,10 @@ compile:
 	cd build && make
 
 format:
-	find -E src -regex '.*\.(h|cc)' -exec clang-format -i {} \;
+	find -E sources -regex '.*\.(h|cc)' -exec clang-format -i {} \;
 
 init:
-	mkdir -p build && cd build && cmake .. && make
+	rm -rf build && mkdir build && cd build && cmake .. && make
 
 test:
 	cd build && ctest
-
-clean:
-	rm -rf build
