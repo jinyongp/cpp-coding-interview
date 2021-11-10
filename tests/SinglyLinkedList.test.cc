@@ -1,5 +1,5 @@
 // #include "../keys/SinglyLinkedList.h"
-#include "../sources/data-structure/linked_list/SinglyLinkedList.h"
+#include "../sources/data_structures/linked_list/SinglyLinkedList.h"
 
 #include <gtest/gtest.h>
 

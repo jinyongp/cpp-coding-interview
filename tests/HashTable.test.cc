@@ -1,5 +1,5 @@
 // #include "../keys/HashTable.h"
-#include "../sources/data-structure/hash_table/HashTable.h"
+#include "../sources/data_structures/hash_table/HashTable.h"
 
 #include <gtest/gtest.h>
 

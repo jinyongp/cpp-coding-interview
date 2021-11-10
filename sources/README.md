@@ -4,19 +4,19 @@
 
 ## Data Structure
 
-- [x] [Stack](./data-structure/stack/Stack.h)
-- [x] [Circular Queue](./data-structure/queue/CircularQueue.h)
+- [x] [Stack](./data_structures/stack/Stack.h)
+- [x] [Circular Queue](./data_structures/queue/CircularQueue.h)
 - [ ] Priority Queue
 - [ ] Deque
-- [x] [Singly Linked List](./data-structure/linked_list/SinglyLinkedList.h)
+- [x] [Singly Linked List](./data_structures/linked_list/SinglyLinkedList.h)
 - [ ] Doubly Linked List
 - [ ] Circular Linked List
 - [ ] Hash Table - Separate Chaining
-- [x] [Hash Table - Linear Probing](./data-structure/hash_table/HashTable.h)
+- [x] [Hash Table - Linear Probing](./data_structures/hash_table/HashTable.h)
 - [ ] ~~Hash Table - Quadratic Probing~~
 - [ ] Hash Table - Double Hashing
-- [x] [Undirected Graph - Adjacency Matrix](./data-structure/graph/GraphMatrix.h)
-- [x] [Undirected Graph - Adjacency List](./data-structure/graph/GraphList.h)
+- [x] [Undirected Graph - Adjacency Matrix](./data_structures/graph/GraphMatrix.h)
+- [x] [Undirected Graph - Adjacency List](./data_structures/graph/GraphList.h)
 - [ ] Undirected Weighted Graph - Adjacency Matrix
 - [ ] Undirected Weighted Graph - Adjacency List
 - [ ] ~~Directed Graph - Adjacency Matrix~~

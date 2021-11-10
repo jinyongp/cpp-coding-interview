@@ -1,5 +1,5 @@
 // #include "../keys/GraphMatrix.h"
-#include "../sources/data-structure/graph/GraphMatrix.h"
+#include "../sources/data_structures/graph/GraphMatrix.h"
 
 #include <gtest/gtest.h>
 

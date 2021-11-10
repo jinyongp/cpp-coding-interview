@@ -1,5 +1,5 @@
 // #include "../keys/GraphList.h"
-#include "../sources/data-structure/graph/GraphList.h"
+#include "../sources/data_structures/graph/GraphList.h"
 
 #include <gtest/gtest.h>
 

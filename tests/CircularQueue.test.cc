@@ -1,5 +1,5 @@
 // #include "../keys/CircularQueue.h"
-#include "../sources/data-structure/queue/CircularQueue.h"
+#include "../sources/data_structures/queue/CircularQueue.h"
 
 #include <gtest/gtest.h>
 

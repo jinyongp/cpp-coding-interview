@@ -1,5 +1,5 @@
 // #include "../keys/Stack.h"
-#include "../sources/data-structure/stack/Stack.h"
+#include "../sources/data_structures/stack/Stack.h"
 
 #include <gtest/gtest.h>
 
