@@ -1,6 +1,6 @@
 [← Data Stucture Theory](../README.md)
 
-# Stack <kbd>[Pass Me](../../../sources/data-structure/stack/Stack.h)</kbd>
+# Stack <kbd>[Pass Me](../../../sources/data_structures/stack/Stack.h)</kbd>
 
 > 선입후출의 데이터 관리 정책을 따르는 자료구조이다.
 ## 스택의 특징

@@ -1,6 +1,6 @@
 [← Data Stucture Theory](../README.md)
 
-# Queue <kbd>[Pass Me - Circular](../../../sources/data-structure/queue/CircularQueue.h)</kbd>
+# Queue <kbd>[Pass Me - Circular](../../../sources/data_structures/queue/CircularQueue.h)</kbd>
 
 ## Linear Queue
 
