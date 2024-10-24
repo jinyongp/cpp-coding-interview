@@ -14,7 +14,7 @@ compile:
 
 format:
 	@if command -v clang-format > /dev/null; then \
-		find -E sources -regex '.*\.(h|cc)' -exec clang-format -i {} \; ; \
+		find -E src -regex '.*\.(h|cc)' -exec clang-format -i {} \; ; \
 	else \
 		echo "[ERROR] clang-format is not installed. Please install clang-format to use this command."; \
 	fi
@@ -27,7 +27,7 @@ init:
 test:
 	@cmake --build build 1>/dev/null
 	@if [ -z "$(filter)" ]; then \
-		cd build && ctest 2>/dev/null; \
+		cd build && ctest --output-on-failure 2>/dev/null; \
 	else \
 		export DEV="$(dev)"; \
 		cd build && ctest --output-on-failure -R $(filter) 2>/dev/null; \

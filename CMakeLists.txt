@@ -21,7 +21,7 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 include_directories("${PROJECT_SOURCE_DIR}/src")
-file(GLOB_RECURSE TEST_FILES "src/*.test.cpp")
+file(GLOB_RECURSE TEST_FILES "src/*.test.cc")
 foreach(TEST_FILE ${TEST_FILES})
   get_filename_component(EXECUTABLE_FILE ${TEST_FILE} NAME_WE)
   set(EXECUTABLE_FILE "Test_${EXECUTABLE_FILE}")

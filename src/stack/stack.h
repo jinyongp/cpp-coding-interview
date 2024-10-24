@@ -1,7 +1,7 @@
 #ifndef STACK_H_
 #define STACK_H_
 
-#include <iostream>
+#include <stdexcept>
 
 #include "stack.interface.h"
 
@@ -79,4 +79,4 @@ class Stack : public StackInterface<T, SIZE> {
   }
 };
 
-#endif  // !STACK_H_
+#endif  // STACK_H_

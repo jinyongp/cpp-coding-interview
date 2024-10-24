@@ -20,11 +20,8 @@
   "cmake.configureOnEdit": false,
   "clang.cxxflags": [
     "-std=c++20",
-    "-I${workspaceRoot}/sources",
+    "-I${workspaceRoot}/src",
     "-I${workspaceRoot}/build/_deps/googletest-src/googletest/include",
     "-I${workspaceRoot}/build/_deps/googletest-src/googlemock/include"
-  ],
-  "files.associations": {
-    "stdexcept": "cpp"
-  }
+  ]
 }

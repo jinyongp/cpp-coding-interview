@@ -5,4 +5,5 @@ Language: Cpp
 AllowShortBlocksOnASingleLine: Never
 AllowShortFunctionsOnASingleLine: Empty
 AllowShortIfStatementsOnASingleLine: AllIfsAndElse
+InsertNewlineAtEOF: true
 ReflowComments: false

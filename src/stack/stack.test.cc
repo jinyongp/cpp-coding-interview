@@ -10,9 +10,8 @@ class StackTest : public ::testing::Test {
   StackInterface<int, 3>* stack;
 
   void SetUp() override {
-    stack = new Stack<int, 3>();
-    const char* is_dev = std::getenv("DEV");
-    if (is_dev && std::string(is_dev) == "true") {
+    const char* dev = std::getenv("DEV");
+    if (dev && std::string(dev) == "true") {
       stack = new _Stack<int, 3>();
     } else {
       stack = new Stack<int, 3>();
