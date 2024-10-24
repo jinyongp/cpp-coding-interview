@@ -1,11 +1,14 @@
-# C++ Coding Interview
+# C++ Coding Interview <!-- omit in toc -->
 
-## 💬 Table of Contents
+## 💬 Table of Contents <!-- omit in toc -->
 
-- [Getting Started](#getting-started)
-- [Data Structure Theory](./docs/Data%20Structure%20Theory/README.md)
-- [Algorithm Theory](./docs/Algorithm%20Theory/README.md)
-- [Problem Solving](./tasks/README.md)
+- [🎉 Getting Started](#-getting-started)
+  - [🛠 Prerequisites](#-prerequisites)
+  - [🧪 Pass All The Tests](#-pass-all-the-tests)
+- [📝 Notes](#-notes)
+- [👥 Contributions](#-contributions)
+- [🌐 References](#-references)
+
 
 ## 🎉 Getting Started
 
@@ -13,7 +16,7 @@
 
 ### 🛠 Prerequisites
 
-#### 1. Install packages/tools
+#### 1. Install packages/tools <!-- omit in toc -->
 
 **프로젝트에 필요한 도구를 설치합니다.**
 
@@ -21,13 +24,13 @@
 - [CMake](https://cmake.org/download/)
 - [clang-format](https://clang.llvm.org/docs/ClangFormat.html) (optional)
 
-#### 2. Install extensions
+#### 2. Install extensions <!-- omit in toc -->
 
 **VSCode Extension 설치**
 
 [extensions.json](./.vscode/extensions.json) 파일을 참고하여 필요한 Extension을 설치합니다.
 
-#### 3. Initialize a project
+#### 3. Initialize a project <!-- omit in toc -->
 
 **아래 명령어를 통해 프로젝트를 초기화합니다.**
 
