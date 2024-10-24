@@ -3,15 +3,17 @@
 
 #include <iostream>
 
+#include "interfaces/StackInterface.h"
+
 /**
- * @tparam Object 항목 유형
+ * @tparam T 항목 유형
  * @tparam SIZE 스택의 최대 크기
  */
-template <typename Object, size_t SIZE>
-class Stack {
+template <typename T, size_t SIZE>
+class Stack : public StackInterface<T, SIZE> {
  private:
-  Object stack_[SIZE];  // 항목을 저장할 공간
-  int top_;             // 가장 최근에 입력한 항목을 참조
+  T stack_[SIZE];  // 항목을 저장할 공간
+  int top_;        // 가장 최근에 입력한 항목을 참조
 
  public:
   /**
@@ -25,7 +27,7 @@ class Stack {
    * @param item 추가할 항목
    * @exception out_of_range 스택이 가득 찼을 때 호출하면 에러가 발생한다.
    */
-  void Push(const Object &item) {
+  void Push(const T &item) {
     // TODO: 코드 작성
   }
 
@@ -41,12 +43,12 @@ class Stack {
   /**
    * 가장 마지막에 입력한 항목을 반환한다.
    *
-   * @return Object
+   * @return T
    * @exception out_of_range 비어있는 스택에서 호출하면 에러를 발생한다.
    */
-  Object Top() const {
+  T Top() const {
     // TODO: 코드 작성
-    return Object{};
+    return T{};
   }
 
   /**

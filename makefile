@@ -10,7 +10,7 @@ help:
 
 
 compile:
-	@cd build && make
+	@cmake --build build
 
 format:
 	@if command -v clang-format > /dev/null; then \
@@ -20,11 +20,15 @@ format:
 	fi
 
 init:
-	@rm -rf build && mkdir build && cd build && cmake .. && make
+	@rm -rf build
+	@cmake -S . -B build
+	@cmake --build build
 
 test:
-ifdef filter
-	cd build && ctest -R $(filter)
-else
-	cd build && ctest
-endif
+	@cmake --build build 1>/dev/null
+	@if [ -z "$(filter)" ]; then \
+		cd build && ctest 2>/dev/null; \
+	else \
+		export DEV="$(dev)"; \
+		cd build && ctest --output-on-failure -R $(filter) 2>/dev/null; \
+	fi;
