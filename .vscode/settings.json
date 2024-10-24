@@ -1,8 +1,23 @@
 {
+  "cSpell.customDictionaries": {
+    "project-dictionary": {
+      "name": "Workspace",
+      "path": "${workspaceRoot}/.vscode/dictionary.txt",
+      "description": "Words used in this project",
+      "addWords": true,
+      "scope": "workspace"
+    },
+    "custom": true,
+    "internal-terms": false
+  },
+  "editor.formatOnSave": true,
+  "[cpp]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+  "C_Cpp.default.cppStandard": "c++20",
+  "C_Cpp.clang_format_style": "file",
   "cmake.configureOnOpen": false,
   "cmake.configureOnEdit": false,
-  "C_Cpp.clang_format_style": "file",
-  "C_Cpp.clang_format_path": "/opt/homebrew/bin/clang-format",
   "clang.cxxflags": [
     "-std=c++20",
     "-I${workspaceRoot}/build/_deps/googletest-src/googletest/include",
