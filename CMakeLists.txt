@@ -24,7 +24,7 @@ include_directories("${PROJECT_SOURCE_DIR}/src")
 file(GLOB_RECURSE TEST_FILES "src/*.test.cc")
 foreach(TEST_FILE ${TEST_FILES})
   get_filename_component(EXECUTABLE_FILE ${TEST_FILE} NAME_WE)
-  set(EXECUTABLE_FILE "Test_${EXECUTABLE_FILE}")
+  set(EXECUTABLE_FILE ${EXECUTABLE_FILE})
 
   add_executable(${EXECUTABLE_FILE} ${TEST_FILE})
   target_link_libraries(${EXECUTABLE_FILE} gtest_main)
@@ -32,6 +32,6 @@ foreach(TEST_FILE ${TEST_FILES})
   include(GoogleTest)
   gtest_discover_tests(
     ${EXECUTABLE_FILE}
-    EXTRA_ARGS --gtest_brief=1
+    EXTRA_ARGS --gtest_brief=1 --gtest_color=yes
   )
 endforeach(TEST_FILE ${TEST_FILES})

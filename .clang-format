@@ -4,6 +4,7 @@ BasedOnStyle: Google
 Language: Cpp
 AllowShortBlocksOnASingleLine: Never
 AllowShortFunctionsOnASingleLine: Empty
-AllowShortIfStatementsOnASingleLine: AllIfsAndElse
+AllowShortIfStatementsOnASingleLine: Never
 InsertNewlineAtEOF: true
+InsertBraces: true
 ReflowComments: false

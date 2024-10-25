@@ -1,4 +1,8 @@
-.PHONY: compile format init test
+.PHONY: help compile format init open test dev
+
+BUILD=cmake --build build
+TEST=cd build && ctest --output-on-failure
+FILTER=grep -vE "^\s+(Start|Running|\/)"
 
 help:
 	@echo "  Usage: make [target]"
@@ -8,9 +12,8 @@ help:
 	@echo "    format                 Format the source code"
 	@echo "    test       filter      Run the tests"
 
-
 compile:
-	@cmake --build build
+	@$(BUILD)
 
 format:
 	@if command -v clang-format > /dev/null; then \
@@ -22,13 +25,17 @@ format:
 init:
 	@rm -rf build
 	@cmake -S . -B build
-	@cmake --build build
+	@$(BUILD)
 
 test:
-	@cmake --build build 1>/dev/null
-	@if [ -z "$(filter)" ]; then \
-		cd build && ctest --output-on-failure 2>/dev/null; \
+	@$(BUILD) 1>/dev/null
+	
+	@export DEV="$(dev)"; \
+	if [ -z "$(filter)" ]; then \
+		$(TEST) 2>/dev/null | $(FILTER); \
 	else \
-		export DEV="$(dev)"; \
-		cd build && ctest --output-on-failure -R $(filter) 2>/dev/null; \
+		$(TEST) -R $(filter) 2>/dev/null | $(FILTER); \
 	fi;
+
+dev:
+	@$(MAKE) test dev=true
