@@ -19,52 +19,50 @@ class CircularQueue : public CircularQueueInterface<T, SIZE> {
 
  public:
   /// @brief 원형 큐 객체를 생성한다.
-  CircularQueue() {
-    throw todo();
-  }
+  CircularQueue() : front_{-1}, rear_{-1}, size_{0} {}
 
   /// @brief 큐에 항목을 추가한다.
   /// @param item 추가할 항목
   /// @exception out_of_range 큐가 가득 찼을 때 호출하면 에러가 발생한다.
   void Enqueue(const T& item) {
-    throw todo();
+    throw todo("큐에 항목을 추가해야 합니다. 큐가 가득 찼을 때 호출하면 에러가 발생해야 합니다.");
   }
 
   /// @brief 큐에서 항목을 제거한다.
   /// @exception out_of_range 큐가 비었을 때 호출하면 에러가 발생한다.
   void Dequeue() {
-    throw todo();
+    throw todo("큐에서 항목을 제거해야 합니다. 큐가 비었을 때 호출하면 에러가 발생해야 합니다.");
   }
 
   /// @brief 가장 예전에 입력한 데이터를 반환한다.
   /// @return 큐의 가장 앞에 있는 항목
   /// @exception out_of_range 큐가 비었을 때 호출하면 에러가 발생한다.
   T Front() const {
-    throw todo();
+    throw todo("큐의 가장 앞에 있는 항목을 반환해야 합니다. 큐가 비었을 때 호출하면 에러가 발생해야 합니다.");
   }
 
   /// @brief 가장 최근에 입력한 데이터를 반환한다.
   /// @return 큐의 가장 뒤에 있는 항목
   /// @exception out_of_range 큐가 비었을 때 호출하면 에러가 발생한다.
   T Back() const {
-    throw todo();
+    throw todo("큐의 가장 뒤에 있는 항목을 반환해야 합니다. 큐가 비었을 때 호출하면 에러가 발생해야 합니다.");
   }
 
   /// @brief 큐가 비었는지 여부를 반환한다.
   /// @return 큐가 비었으면 true, 그렇지 않으면 false
   bool Empty() const {
-    throw todo();
+    throw todo("큐가 비었는지 여부를 반환해야 합니다.");
   }
 
   /// @brief 큐가 가득 찼는지 여부를 반환한다.
   /// @return 큐가 가득 찼으면 true, 그렇지 않으면 false
   bool Full() const {
-    throw todo();
+    throw todo("큐가 가득 찼는지 여부를 반환해야 합니다.");
   }
 
   /// @brief 큐를 비운다.
   void Clear() {
-    throw todo();
+    throw todo("큐를 비워야 합니다.");
   }
 };
 

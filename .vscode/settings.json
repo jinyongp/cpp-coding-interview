@@ -18,10 +18,44 @@
   "C_Cpp.clang_format_style": "file",
   "cmake.configureOnOpen": false,
   "cmake.configureOnEdit": false,
+  "testMate.cpp.test.advancedExecutables": [
+    {
+      "pattern": "build/*+test",
+      "dependsOn": [
+        "src/**/*"
+      ],
+      "runTask": {
+        "before": [
+          "CMake: build"
+        ]
+      }
+    }
+  ],
   "clang.cxxflags": [
     "-std=c++20",
     "-I${workspaceRoot}/src",
     "-I${workspaceRoot}/build/_deps/googletest-src/googletest/include",
     "-I${workspaceRoot}/build/_deps/googletest-src/googlemock/include"
-  ]
+  ],
+  "files.associations": {
+    "__bit_reference": "cpp",
+    "__hash_table": "cpp",
+    "__split_buffer": "cpp",
+    "__tree": "cpp",
+    "array": "cpp",
+    "deque": "cpp",
+    "forward_list": "cpp",
+    "initializer_list": "cpp",
+    "ios": "cpp",
+    "list": "cpp",
+    "map": "cpp",
+    "regex": "cpp",
+    "set": "cpp",
+    "span": "cpp",
+    "string": "cpp",
+    "string_view": "cpp",
+    "unordered_map": "cpp",
+    "unordered_set": "cpp",
+    "vector": "cpp"
+  }
 }

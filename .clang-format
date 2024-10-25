@@ -7,4 +7,5 @@ AllowShortFunctionsOnASingleLine: Empty
 AllowShortIfStatementsOnASingleLine: Never
 InsertNewlineAtEOF: true
 InsertBraces: true
+ColumnLimit: 200
 ReflowComments: false
