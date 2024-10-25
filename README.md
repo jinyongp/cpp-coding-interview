@@ -13,7 +13,16 @@
 
 ## 🎉 Getting Started
 
-**[Fork](https://github.com/jinyongp/cpp-coding-interview/fork) This Project 🔥**
+### Fork the project <!-- omit in toc -->
+
+**이 프로젝트를 [Fork](https://github.com/jinyongp/cpp-coding-interview/fork) 하세요! 🔥**
+
+Fork가 완료되면, 프로젝트를 로컬 환경으로 Clone합니다.
+
+```bash
+$ cd /path/to/your/workspace
+$ git clone https://github.com/<username>/cpp-coding-interview.git
+```
 
 ### 🛠 Prerequisites
 
@@ -23,13 +32,13 @@
 
 - [make](https://www.gnu.org/software/make/)
 - [CMake](https://cmake.org/download/)
-- [clang-format](https://clang.llvm.org/docs/ClangFormat.html) (optional)
+- [clang-format](https://clang.llvm.org/docs/ClangFormat.html) (recommended)
 
 #### 2. Install extensions <!-- omit in toc -->
 
 **VSCode Extension 설치**
 
-[extensions.json](./.vscode/extensions.json) 파일을 참고하여 필요한 Extension을 설치합니다.
+VSCode를 사용 중이시라면, 확장(Extensions) 탭으로 이동하여 `@recommended`를 검색하고 모두 설치합니다.
 
 #### 3. Initialize a project <!-- omit in toc -->
 
@@ -47,13 +56,26 @@ $ make
 
 ### 🧪 Pass All The Tests
 
-**[`src`](./src) 디렉터리 내, `TODO`를 수행하며 모든 테스트를 통과하도록 구현하는 것이 목표입니다.**
+**[`src`](./src) 디렉터리 내, `todo`를 수행하며 모든 테스트를 통과하도록 구현하는 것이 목표입니다.**
 
-- 코드를 수정하고, `make` 명령어를 실행하여 빌드를 합니다.
-- `make test` 명령어 혹은 `matepek.vscode-catch2-test-adapter` Extension을 통해 테스트를 실행합니다.
-- [`tests`](./tests) 폴더 내에 있는 `*.test.cc` 파일을 확인하여 어느 부분에서 문제가 발생했는지 확인할 수 있습니다.
-- [`keys`](./keys) 폴더에서 모든 테스트를 통과하는 코드를 참고할 수 있습니다.
-- 테스트 케이스를 통과하셨나요? [PR](https://github.com/jinyongp/cpp-coding-interview/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc)을 올려 자랑해주세요!
+>아래 예시는 `stack` 과제를 수행하는 방법입니다.
+
+1. 과제를 시작하기 전, 새로운 git branch를 생성합니다.
+   ```bash
+   $ git pull upstream main
+   $ git checkout -b stack
+   ```
+2. [stack.h](./src/stack/stack.h)파일을 열어 주석을 읽고 각 함수의 의도에 맞게 구현합니다.
+   - `throw todo();`를 지우고 함수가 정상적으로 동작할 수 있도록 코드를 작성하세요.
+3. 테스트를 위해 터미널에서 아래 명령어를 실행합니다. (`filter` 인자를 전달하여 테스트 이름을 지정합니다. 테스트 이름은 `*.test.cc` 파일에서 확인 가능합니다.)
+   ```bash
+    $ make test filter=StackTest # StackTest 테스트만 실행
+    ```
+   - 또는, VSCode 내 설치한 `matepek.vscode-catch2-test-adapter` Extension을 통해 테스트를 실행합니다.
+   - 결과를 확인하고 모두 통과할 때까지 코드를 수정합니다.
+3. 구현이 어렵다면, `*.test.cc` 파일을 참고하여 적절한 동작을 이해하고 구현합니다.
+4. `*.hint.h` 파일을 통해 모든 테스트를 통과하는 코드를 참고할 수 있습니다.
+5. 모든 테이트 케이스를 완료했다면? [PR](https://github.com/jinyongp/cpp-coding-interview/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc)을 올려 자랑해주세요!
 
 ## 🚩 Tests
 
