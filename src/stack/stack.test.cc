@@ -83,35 +83,44 @@ TEST_F(stack, Clear) {
 }
 
 TEST_F(stack, Reference) {
+  auto s = new Stack<utils::dummy, 3>();
+
   times(2) {
-    auto s = new Stack<utils::dummy, 3>();
+    ASSERT_TRUE(s->IsEmpty()) << "스택이 비어있어야 합니다.";
+    ASSERT_FALSE(s->IsFull()) << "스택이 가득 차지 않았어야 합니다.";
+    ASSERT_EQ(s->Size(), 0) << "스택이 비어있어야 합니다.";
+    ASSERT_THROW(s->Peek(), std::underflow_error) << "비어있을 때 항목을 조회하면 에러가 발생해야 합니다.";
+    ASSERT_THROW(s->Pop(), std::underflow_error) << "비어있을 때 항목을 제거하면 에러가 발생해야 합니다.";
 
     times(3) {
-      s->Push(utils::dummy{i});
+      ASSERT_NO_THROW(s->Push(utils::dummy{i}));
       ASSERT_EQ(s->Peek().value, i) << "가장 나중에 넣은 항목을 조회합니다.";
       ASSERT_EQ(s->Size(), i + 1) << "항목을 추가할 때마다 크기가 증가해야 합니다.";
-    }
+    }  // | 0 | 1 | 2 | -> top: 2, size: 3
 
     ASSERT_THROW(s->Push(utils::dummy{0}), std::overflow_error);
-    ASSERT_TRUE(s->IsFull());
+    ASSERT_FALSE(s->IsEmpty()) << "스택이 비어있지 않아야 합니다.";
+    ASSERT_TRUE(s->IsFull()) << "스택이 가득 차야 합니다.";
+    ASSERT_EQ(s->Size(), 3) << "스택이 가득 찼을 때 크기는 최대 크기와 같아야 합니다.";
 
-    ASSERT_EQ(s->Peek().value, 2) << "가장 나중에 넣은 항목을 조회합니다.";
-    s->Pop();  // 2
-    ASSERT_EQ(s->Peek().value, 1) << "Pop 함수를 호출하면 가장 최근에 넣은 항목을 제거합니다.";
-    s->Pop();  // 1
-    ASSERT_EQ(s->Peek().value, 0) << "Pop 함수를 호출하면 가장 최근에 넣은 항목을 제거합니다.";
-    s->Pop();  // 0
+    times(3) {
+      ASSERT_EQ(s->Peek().value, 3 - (i + 1)) << "가장 나중에 넣은 항목을 조회합니다.";
+      ASSERT_EQ(s->Size(), 3 - i) << "항목을 제거할 때마다 크기가 감소해야 합니다.";
+      ASSERT_NO_THROW(s->Pop());  // 2 1 0
+    }
 
     ASSERT_TRUE(s->IsEmpty()) << "모든 항목을 제거하면 스택이 비어있어야 합니다.";
+    ASSERT_FALSE(s->IsFull()) << "스택이 가득 차지 않았어야 합니다.";
+    ASSERT_EQ(s->Size(), 0) << "모든 항목을 제거하면 크기가 0이어야 합니다.";
     ASSERT_THROW(s->Pop(), std::underflow_error);
     ASSERT_THROW(s->Peek(), std::underflow_error);
 
-    s->Push(utils::dummy{3});
-    ASSERT_EQ(s->Peek().value, 3) << "가장 나중에 넣은 항목을 조회합니다.";
+    times(3) s->Push(utils::dummy{i});  // 0 1 2
+    ASSERT_EQ(s->Peek().value, 2) << "가장 나중에 넣은 항목을 조회합니다.";
 
     s->Clear();
     ASSERT_TRUE(s->IsEmpty()) << "Clear 함수를 호출하면 스택이 비어있어야 합니다.";
-
-    delete s;
   }
+
+  delete s;
 }

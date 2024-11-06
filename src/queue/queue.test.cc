@@ -94,35 +94,48 @@ TEST_F(queue, Clear) {
 }
 
 TEST_F(queue, Reference) {
+  auto q = new Queue<utils::dummy, 3>();
+
   times(2) {
-    auto q = new Queue<utils::dummy, 3>();
+    ASSERT_TRUE(q->IsEmpty()) << "큐가 비어있어야 합니다.";
+    ASSERT_FALSE(q->IsFull()) << "큐가 가득 차지 않았어야 합니다.";
+    ASSERT_EQ(q->Size(), 0) << "큐가 비어있어야 합니다.";
+    ASSERT_THROW(q->Front(), std::underflow_error) << "비어있을 때 항목을 조회하면 에러가 발생해야 합니다.";
+    ASSERT_THROW(q->Rear(), std::underflow_error) << "비어있을 때 항목을 조회하면 에러가 발생해야 합니다.";
+    ASSERT_THROW(q->Dequeue(), std::underflow_error) << "비어있을 때 항목을 제거하면 에러가 발생해야 합니다.";
 
     times(3) {
-      q->Enqueue(utils::dummy{i});
+      ASSERT_NO_THROW(q->Enqueue(utils::dummy{i}));
+      ASSERT_EQ(q->Front().value, 0) << "가장 먼저 넣은 항목을 조회합니다.";
       ASSERT_EQ(q->Rear().value, i) << "가장 나중에 넣은 항목을 조회합니다.";
       ASSERT_EQ(q->Size(), i + 1) << "항목을 추가할 때마다 크기가 증가해야 합니다.";
-    }
+    }  // | 0 | 1 | 2 | -> front: 0, rear: 2, size: 3
 
     ASSERT_THROW(q->Enqueue(utils::dummy{0}), std::overflow_error);
-    ASSERT_TRUE(q->IsFull());
+    ASSERT_FALSE(q->IsEmpty()) << "큐가 비어있지 않아야 합니다.";
+    ASSERT_TRUE(q->IsFull()) << "큐가 가득 차야 합니다.";
+    ASSERT_EQ(q->Size(), 3) << "큐가 가득 찼을 때 크기는 최대 크기와 같아야 합니다.";
 
-    ASSERT_EQ(q->Front().value, 0) << "가장 먼저 넣은 항목을 조회합니다.";
-    q->Dequeue();  // 0
-    ASSERT_EQ(q->Front().value, 1) << "Dequeue 함수를 호출하면 가장 먼저 넣은 항목을 제거합니다.";
-    q->Dequeue();  // 1
-    ASSERT_EQ(q->Front().value, 2) << "Dequeue 함수를 호출하면 가장 먼저 넣은 항목을 제거합니다.";
-    q->Dequeue();  // 2
+    times(3) {
+      ASSERT_EQ(q->Front().value, i) << "Dequeue 함수를 호출하면 가장 먼저 넣은 항목을 제거합니다.";
+      ASSERT_EQ(q->Rear().value, 2) << "가장 나중에 넣은 항목을 조회합니다.";
+      ASSERT_EQ(q->Size(), 3 - i) << "항목을 제거할 때마다 크기가 감소해야 합니다.";
+      ASSERT_NO_THROW(q->Dequeue());  // 0 1 2
+    }
 
     ASSERT_TRUE(q->IsEmpty()) << "모든 항목을 제거하면 큐가 비어있어야 합니다.";
+    ASSERT_FALSE(q->IsFull()) << "큐가 가득 차지 않았어야 합니다.";
+    ASSERT_EQ(q->Size(), 0) << "모든 항목을 제거하면 크기가 0이어야 합니다.";
     ASSERT_THROW(q->Dequeue(), std::underflow_error);
     ASSERT_THROW(q->Front(), std::underflow_error);
+    ASSERT_THROW(q->Rear(), std::underflow_error);
 
-    q->Enqueue(utils::dummy{3});
-    ASSERT_EQ(q->Front().value, 3) << "가장 먼저 넣은 항목을 조회합니다.";
+    times(3) q->Enqueue(utils::dummy{i});  // 0 1 2
+    ASSERT_EQ(q->Rear().value, 2) << "가장 나중에 넣은 항목을 조회합니다.";
 
     q->Clear();
     ASSERT_TRUE(q->IsEmpty()) << "Clear 함수를 호출하면 큐가 비어있어야 합니다.";
-
-    delete q;
   }
+
+  delete q;
 }
