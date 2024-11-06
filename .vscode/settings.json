@@ -21,7 +21,7 @@
   "cmake.configureOnEdit": false,
   "testMate.cpp.test.advancedExecutables": [
     {
-      "pattern": "build/*+test",
+      "pattern": "build/tests/*",
       "dependsOn": [
         "src/**/*"
       ],

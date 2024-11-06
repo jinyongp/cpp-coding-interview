@@ -1,15 +1,22 @@
 # C++ Coding Interview <!-- omit in toc -->
 
+자료구조, 알고리즘 그 외 코딩 과제를 풀거나 추가할 수 있는 저장소입니다.
+
+**과제를 추가하거나 풀고 싶다면 [🛠 Prerequisites](#-prerequisites)로 이동하세요.**
+
 ## 💬 Table of Contents <!-- omit in toc -->
 
 - [🌈 Directory Structure](#-directory-structure)
 - [🛸 Commands](#-commands)
+- [🛠 Prerequisites](#-prerequisites)
+  - [Fork the project](#fork-the-project)
+  - [Install packages and tools](#install-packages-and-tools)
+  - [Install vscode extensions](#install-vscode-extensions)
+  - [Initialize a project](#initialize-a-project)
 - [🎉 Getting Started](#-getting-started)
-  - [🛠 Prerequisites](#-prerequisites)
   - [🧪 Pass All The Tests](#-pass-all-the-tests)
-- [🚩 Tests](#-tests)
-- [📝 Notes](#-notes)
 - [👥 Contributions](#-contributions)
+- [📝 Notes](#-notes)
 - [🌐 References](#-references)
 
 ## 🌈 Directory Structure
@@ -57,9 +64,15 @@ $ make format
 $ make
 $ make help
 ```
-## 🎉 Getting Started
 
-### Fork the project <!-- omit in toc -->
+## 🛠 Prerequisites
+
+**아래 설정을 완료하고**
+
+- 과제를 수행하고 싶다면 [🎉 Getting Started](#-getting-started)로 이동하세요.
+- 새로운 과제를 추가하고 싶다면 [👥 Contributions](#-contributions)로 이동하세요.
+
+### Fork the project
 
 **이 프로젝트를 [Fork](https://github.com/jinyongp/cpp-coding-interview/fork) 하세요! 🔥**
 
@@ -70,21 +83,20 @@ $ cd /path/to/your/workspace
 $ git clone https://github.com/<username>/cpp-coding-interview.git
 ```
 
-### 🛠 Prerequisites
-
-#### 1. Install packages and tools <!-- omit in toc -->
+### Install packages and tools
 
 **프로젝트에 필요한 도구를 설치합니다.**
 
+- gcc, g++
 - [make](https://www.gnu.org/software/make/)
 - [CMake](https://cmake.org/download/)
 - [clang-format](https://clang.llvm.org/docs/ClangFormat.html) (recommended)
 
-#### 2. Install vscode extensions <!-- omit in toc -->
+### Install vscode extensions
 
 VSCode를 사용 중이시라면, 확장(Extensions) 탭으로 이동하여 `@recommended`를 검색하고 모두 설치합니다.
 
-#### 3. Initialize a project <!-- omit in toc -->
+### Initialize a project
 
 **아래 명령어를 통해 프로젝트를 초기화합니다.**
 
@@ -94,6 +106,8 @@ $ make init
 # 도움말 출력
 $ make
 ```
+
+## 🎉 Getting Started
 
 ### 🧪 Pass All The Tests
 
@@ -107,31 +121,51 @@ $ make
    $ git pull upstream main
    $ git checkout -b stack
    ```
-3. [stack.h](./src/stack/stack.h) 파일을 열어 주석을 읽고 각 함수의 의도에 맞게 구현합니다.
-   - `throw todo();`를 지우고 함수가 정상적으로 동작할 수 있도록 코드를 작성하세요.
-4. 구현을 완료했다면, 테스트를 실행하여 작성한 소스 코드가 정상적으로 동작하는지 확인합니다.
-   -  테스트를 수행하기 위해선 아래 두 가지 방법이 있습니다.
+3. [src/stack/README.md](./src/stack/README.md) 파일을 열어 과제에 필요한 개념을 읽고 이해합니다.
+   - `make run name=stack` 명령어를 실행하여 예시 코드를 실행하여 실제 동작을 확인하세요.
+4. [src/stack/stack.h](./src/stack/stack.h) 파일을 열어 주석을 읽고 각 함수의 의도에 맞게 구현합니다.
+   - `throw utils::todo();` 라인을 지우고 함수가 정상적으로 동작할 수 있도록 코드를 작성세요.
+5. 어느정도 구현을 완료했다면, 테스트를 실행하여 작성한 소스 코드가 정상적으로 동작하는지 확인합니다. 테스트를 수행하기 위해선 아래 두 가지 방법이 있습니다.
+   - 터미널에서 아래 명령어를 실행합니다. (`name` 인자를 전달하여 특정 테스트만 실행할 수 있습니다.)
+      ```bash
+      # 모든 stack 테스트 실행
+      $ make test name=stack
+      # 특정 테스트만 실행
+      $ make test name=stack.Push
+      ```
+   - VSCode 내 테스트 탭을 열어 테스트를 실행합니다.
+6. 테스트 결과를 확인하고 모두 통과할 때까지 코드를 수정합니다.
+7. 구현에 어려움이 있다면, `stack.test.cc` 파일을 참고하여 적절한 동작을 이해하고 구현합니다.
+8. `stack.hint.h` 파일을 통해 모든 테스트를 통과하는 코드를 참고할 수 있습니다.
+9. 모든 테이트 케이스를 완료했다면? 작업물을 커밋하고 [PR](https://github.com/jinyongp/cpp-coding-interview/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc)을 올려 자랑해주세요!
 
-      1. 터미널에서 아래 명령어를 실행합니다. (`name` 인자를 전달하여 특정 테스트만 실행할 수 있습니다.)
+## 👥 Contributions
 
-         ```bash
-         # 모든 stack 테스트 실행
-         $ make test name=stack
+>테스트 케이스에서 오류/누락을 발견하신다면 [Issue](https://github.com/jinyongp/cpp-coding-interview/issues/new) 혹은 [Pull Request](https://github.com/jinyongp/cpp-coding-interview/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc)를 등록해주세요!
 
-         # 특정 테스트만 실행
-         $ make test name=stack.Push
-         ```
-      2. VSCode 내 설치한 `matepek.vscode-catch2-test-adapter` Extension을 통해 테스트를 실행합니다.
-   - 테스트 결과를 확인하고 모두 통과할 때까지 코드를 수정합니다.
-5. 구현에 어려움이 있다면, `stack.test.cc` 파일을 참고하여 적절한 동작을 이해하고 구현합니다.
-6. `stack.hint.h` 파일을 통해 모든 테스트를 통과하는 코드를 참고할 수 있습니다.
-7. 모든 테이트 케이스를 완료했다면? 작업물을 커밋하고 [PR](https://github.com/jinyongp/cpp-coding-interview/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc)을 올려 자랑해주세요!
+과제를 직접 추가해보세요! 🚀
 
-## 🚩 Tests
+```bash
+# 과제 템플릿 추가
+$ make generate name=<name>
 
-**자료구조**
+# 추가한 파일 빌드
+$ make init_dev
+```
 
-- [Stack](./src/stack/README.md)
+위 명령어를 통해 `src/<name>` 디렉터리가 생성되며, 해당 디렉터리 내에 과제를 추가할 수 있습니다.
+
+[Directory Structure](#-directory-structure)를 참고하여 파일을 작성하고, 아래 명령어를 통해 테스트를 실행하세요.
+
+```bash
+# <name>.cc 파일 실행
+$ make run name=<name>
+
+# <name>.test.cc 파일 실행
+$ make test name=<name>
+```
+
+추가한 과제를 [Pull Request](https://github.com/jinyongp/cpp-coding-interview/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc)을 올려주세요!
 
 ## 📝 Notes
 
@@ -140,11 +174,7 @@ $ make
 - C++ 테스트를 위해 [GoogleTest Framework](https://github.com/google/googletest)를 적용했습니다.
 - 프로젝트 빌드를 위해 [`cmake`](https://cmake.org/)와 `makefile`을 사용했습니다.
 
-## 👥 Contributions
-
-- 테스트 케이스의 오류/누락을 발견하신다면 [Issue](https://github.com/jinyongp/cpp-coding-interview/issues/new) 혹은 [PR](https://github.com/jinyongp/cpp-coding-interview/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc)을 올려주세요!
-<!-- - 추가되었으면 하는 자료구조 혹은 알고리즘을 [Issue](https://github.com/jinyongp/cpp-coding-interview/issues/new)로 알려주세요! 금방 추가해보겠습니다. 😁 -->
-
 ## 🌐 References
 
 - [GeeksForGeeks Practice Problems](https://practice.geeksforgeeks.org/explore/?page=1)
+- [GeeksForGeeks Learn Data Structures and Algorithms](https://www.geeksforgeeks.org/learn-data-structures-and-algorithms-dsa-tutorial/)

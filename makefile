@@ -1,4 +1,4 @@
-.PHONY: help init init_dev build test list format run
+.PHONY: help init init_dev build test list format run generate
 
 BUILD=cmake --build build
 
@@ -40,3 +40,6 @@ run:
 
 init_dev:
 	@$(MAKE) init dev=true
+
+generate:
+	@./scripts/generate.sh
