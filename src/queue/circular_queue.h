@@ -4,7 +4,7 @@
 #include <stdexcept>
 
 #include "circular_queue.interface.h"
-#include "utils.cc"
+#include "utils.h"
 
 /// @brief 원형 큐 (Circular Queue) 클래스를 구현합니다.
 /// @tparam T 항목 유형

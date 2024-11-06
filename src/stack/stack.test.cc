@@ -3,15 +3,13 @@
 #include <gtest/gtest.h>
 
 #include "stack.hint.h"
-#include "stack.interface.h"
 
 class stack : public ::testing::Test {
  protected:
   StackInterface<int, 3>* s0_;
 
   void SetUp() override {
-    const char* dev = std::getenv("DEV");
-    if (dev && std::string(dev) == "true") {
+    if (is_dev()) {
       s0_ = new _Stack<int, 3>();
     } else {
       s0_ = new Stack<int, 3>();

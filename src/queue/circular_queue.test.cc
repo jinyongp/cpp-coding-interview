@@ -10,8 +10,7 @@ class circular_queue : public ::testing::Test {
   CircularQueueInterface<int, 5>* q0_;
 
   void SetUp() override {
-    const char* dev = std::getenv("DEV");
-    if (dev && std::string(dev) == "true") {
+    if (is_dev()) {
       q0_ = new _CircularQueue<int, 5>();
     } else {
       q0_ = new CircularQueue<int, 5>();

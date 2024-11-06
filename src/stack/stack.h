@@ -4,7 +4,7 @@
 #include <stdexcept>
 
 #include "stack.interface.h"
-#include "utils.cc"
+#include "utils.h"
 
 /// @brief 스택 (Stack) 클래스를 구현한다.
 /// @tparam T 항목 유형
