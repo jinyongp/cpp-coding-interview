@@ -30,6 +30,10 @@ class dummy {
   void mutate() {
     value = 1;
   }
+
+  bool operator==(const dummy& other) const {
+    return value == other.value;
+  }
 };
 
 // inline bool is_dev() {
