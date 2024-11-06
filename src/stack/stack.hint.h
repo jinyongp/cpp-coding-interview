@@ -4,58 +4,63 @@
 #include "stack.interface.h"
 #include "utils.h"
 
-/// _Stack<int, 3>()
-/// Create |     |     |     | -> top_: -1
-/// Push   |item1|     |     | -> top_: 0
-/// Push   |item1|item2|     | -> top_: 1
-/// Push   |item1|item2|item3| -> top_: 2 (Full)
-/// Push   |item1|item2|item3| -> out_of_range
-/// Pop    |item1|item2|     | -> top_: 1
-/// Pop    |item1|     |     | -> top_: 0
-/// Pop    |     |     |     | -> top_: -1
-/// Pop    |     |     |     | -> out_of_range
+// Stack<int, 3>()
+// Create |     |     |     | -> top_: -1
+// Push   |item1|     |     | -> top_: 0
+// Push   |item1|item2|     | -> top_: 1
+// Push   |item1|item2|item3| -> top_: 2 (Full)
+// Push   |item1|item2|item3| -> overflow_error
+// Pop    |item1|item2|     | -> top_: 1
+// Pop    |item1|     |     | -> top_: 0
+// Pop    |     |     |     | -> top_: -1
+// Pop    |     |     |     | -> underflow_error
+
 template <typename T, size_t SIZE>
 class Stack : public StackInterface<T, SIZE> {
  private:
-  T stack_[SIZE];  // 항목을 저장할 공간
-  int top_;        // 가장 최근에 입력한 항목을 참조
+  T stack_[SIZE];
+  int top_;
 
  public:
   Stack() : top_{-1} {}
 
-  void Push(const T &item) {
-    if (Full()) {
-      throw std::out_of_range("stack is full");
+  void Push(const T &item) override {
+    if (IsFull()) {
+      throw std::overflow_error("stack is full");
     }
 
     stack_[++top_] = item;
   }
 
-  void Pop() {
-    if (Empty()) {
-      throw std::out_of_range("stack is empty");
+  void Pop() override {
+    if (IsEmpty()) {
+      throw std::underflow_error("stack is empty");
     }
 
     top_ -= 1;
   }
 
-  T Top() const {
-    if (Empty()) {
-      throw std::out_of_range("stack is empty");
+  T Peek() const override {
+    if (IsEmpty()) {
+      throw std::underflow_error("stack is empty");
     }
 
     return stack_[top_];
   }
 
-  bool Empty() const {
+  bool IsEmpty() const override {
     return top_ < 0;
   }
 
-  bool Full() const {
+  bool IsFull() const override {
     return top_ == SIZE - 1;
   }
 
-  void Clear() {
+  size_t Size() const override {
+    return top_ + 1;
+  }
+
+  void Clear() override {
     top_ = -1;
   }
 };

@@ -21,79 +21,97 @@ class stack : public ::testing::Test {
 
 TEST_F(stack, Push) {
   EXPECT_NO_THROW(s0_->Push(1));
-  ASSERT_FALSE(s0_->Empty()) << "항목이 추가되어야 합니다.";
+  ASSERT_FALSE(s0_->IsEmpty()) << "항목이 추가되어야 합니다.";
   EXPECT_NO_THROW(s0_->Push(2));
   EXPECT_NO_THROW(s0_->Push(3));
-  ASSERT_THROW(s0_->Push(4), std::out_of_range) << "최대 크기를 벗어나 항목을 추가하면 에러가 발생해야 합니다.\n"
-                                                << "hint: throw std::out_of_range(\"description\");";
+  ASSERT_THROW(s0_->Push(4), std::overflow_error) << "최대 크기를 벗어나 항목을 추가하면 에러가 발생해야 합니다.\n"
+                                                  << "hint: throw std::overflow_error(\"description\");";
 }
 
 TEST_F(stack, Pop) {
-  utils::range({.count = 3}, [this](int i) { s0_->Push(i); });  // 0 1 2
+  times(3) s0_->Push(i);  // 0 1 2
 
   EXPECT_NO_THROW(s0_->Pop());  // 2
-  ASSERT_EQ(s0_->Top(), 1) << "가장 나중에 넣은 항목을 먼저 출력해야 합니다.";
+  ASSERT_EQ(s0_->Peek(), 1) << "가장 나중에 넣은 항목을 먼저 출력해야 합니다.";
 
   EXPECT_NO_THROW(s0_->Pop());  // 1
   EXPECT_NO_THROW(s0_->Pop());  // 0
-  ASSERT_THROW(s0_->Pop(), std::out_of_range) << "비어있을 때 항목을 출력하면 에러가 발생해야 합니다."
-                                              << "hint: throw std::out_of_range(\"description\");";
+  ASSERT_THROW(s0_->Pop(), std::underflow_error) << "비어있을 때 항목을 제거하면 에러가 발생해야 합니다.\n"
+                                                 << "hint: throw std::underflow_error(\"description\");";
 }
 
-TEST_F(stack, Top) {
-  ASSERT_THROW(s0_->Top(), std::out_of_range) << "비어있을 때 항목을 조회하면 에러가 발생해야 합니다.\n"
-                                              << "hint: throw std::out_of_range(\"description\");";
+TEST_F(stack, Peek) {
+  ASSERT_THROW(s0_->Peek(), std::underflow_error) << "비어있을 때 항목을 조회하면 에러가 발생해야 합니다.\n"
+                                                  << "hint: throw std::underflow_error(\"description\");";
   s0_->Push(1);
-  ASSERT_EQ(s0_->Top(), 1) << "가장 나중에 넣은 항목을 조회합니다.";
+  ASSERT_EQ(s0_->Peek(), 1) << "가장 나중에 넣은 항목을 조회합니다.";
   s0_->Push(2);
-  ASSERT_EQ(s0_->Top(), 2) << "가장 나중에 넣은 항목을 조회합니다.";
+  ASSERT_EQ(s0_->Peek(), 2) << "가장 나중에 넣은 항목을 조회합니다.";
   s0_->Push(3);
-  ASSERT_EQ(s0_->Top(), 3) << "가장 나중에 넣은 항목을 조회합니다.";
+  ASSERT_EQ(s0_->Peek(), 3) << "가장 나중에 넣은 항목을 조회합니다.";
 }
 
-TEST_F(stack, Empty) {
-  ASSERT_TRUE(s0_->Empty());
+TEST_F(stack, IsEmpty) {
+  ASSERT_TRUE(s0_->IsEmpty());
   s0_->Push(1);
-  ASSERT_FALSE(s0_->Empty());
+  ASSERT_FALSE(s0_->IsEmpty());
 }
 
-TEST_F(stack, Full) {
-  ASSERT_FALSE(s0_->Full());
+TEST_F(stack, IsFull) {
+  ASSERT_FALSE(s0_->IsFull());
 
-  utils::range({.count = 3}, [this](int i) { s0_->Push(i); });
-  ASSERT_TRUE(s0_->Full());
+  times(3) s0_->Push(i);
+  ASSERT_TRUE(s0_->IsFull());
+}
+
+TEST_F(stack, Size) {
+  times(3) {
+    s0_->Push(i);
+    ASSERT_EQ(s0_->Size(), i + 1) << "항목을 추가할 때마다 크기가 증가해야 합니다.";
+  }
+
+  s0_->Clear();
+  ASSERT_EQ(s0_->Size(), 0) << "모든 항목을 제거하면 크기가 0이어야 합니다.";
 }
 
 TEST_F(stack, Clear) {
   s0_->Push(0);
 
   s0_->Clear();
-  ASSERT_TRUE(s0_->Empty());
-  ASSERT_FALSE(s0_->Full());
+  ASSERT_TRUE(s0_->IsEmpty());
+  ASSERT_FALSE(s0_->IsFull());
 }
 
 TEST_F(stack, Reference) {
-  loop(2) {
+  times(2) {
     auto s = new Stack<utils::dummy, 3>();
 
-    utils::range({.count = 3}, [s](int i) { s->Push(utils::dummy{i}); });
-    ASSERT_TRUE(s->Full());
+    times(3) {
+      s->Push(utils::dummy{i});
+      ASSERT_EQ(s->Peek().value, i) << "가장 나중에 넣은 항목을 조회합니다.";
+      ASSERT_EQ(s->Size(), i + 1) << "항목을 추가할 때마다 크기가 증가해야 합니다.";
+    }
 
-    ASSERT_EQ(s->Top().value, 2) << "가장 나중에 넣은 항목을 조회합니다.";
+    ASSERT_THROW(s->Push(utils::dummy{0}), std::overflow_error);
+    ASSERT_TRUE(s->IsFull());
+
+    ASSERT_EQ(s->Peek().value, 2) << "가장 나중에 넣은 항목을 조회합니다.";
     s->Pop();  // 2
-    ASSERT_EQ(s->Top().value, 1) << "Pop 함수를 호출하면 가장 최근에 넣은 항목을 제거합니다.";
+    ASSERT_EQ(s->Peek().value, 1) << "Pop 함수를 호출하면 가장 최근에 넣은 항목을 제거합니다.";
     s->Pop();  // 1
-    ASSERT_EQ(s->Top().value, 0) << "Pop 함수를 호출하면 가장 최근에 넣은 항목을 제거합니다.";
+    ASSERT_EQ(s->Peek().value, 0) << "Pop 함수를 호출하면 가장 최근에 넣은 항목을 제거합니다.";
     s->Pop();  // 0
 
-    ASSERT_TRUE(s->Empty()) << "모든 항목을 제거하면 스택이 비어있어야 합니다.";
-    ASSERT_THROW(s->Pop(), std::out_of_range);
-    ASSERT_THROW(s->Top(), std::out_of_range);
+    ASSERT_TRUE(s->IsEmpty()) << "모든 항목을 제거하면 스택이 비어있어야 합니다.";
+    ASSERT_THROW(s->Pop(), std::underflow_error);
+    ASSERT_THROW(s->Peek(), std::underflow_error);
 
     s->Push(utils::dummy{3});
-    ASSERT_EQ(s->Top().value, 3) << "가장 나중에 넣은 항목을 조회합니다.";
+    ASSERT_EQ(s->Peek().value, 3) << "가장 나중에 넣은 항목을 조회합니다.";
 
     s->Clear();
-    ASSERT_TRUE(s->Empty()) << "Clear 함수를 호출하면 스택이 비어있어야 합니다.";
+    ASSERT_TRUE(s->IsEmpty()) << "Clear 함수를 호출하면 스택이 비어있어야 합니다.";
+
+    delete s;
   }
 }

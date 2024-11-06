@@ -1,7 +1,7 @@
 #ifndef UTILS_H_
 #define UTILS_H_
 
-#define loop(n) for (int i = 0; i < n; i++)
+#define times(n) for (int i = 0; i < n; i++)
 
 #include <exception>
 #include <functional>
@@ -55,6 +55,23 @@ inline void range(RangeArgs args, const std::function<void(int)>& func) {
   } else {
     for (int i = args.start; i < args.end; i += args.step) {
       func(i);
+    }
+  }
+}
+
+template <typename Func, typename ReturnType = std::invoke_result_t<Func>>
+auto guard(Func func) -> std::conditional_t<std::is_void_v<ReturnType>, void, std::optional<ReturnType>> {
+  if constexpr (std::is_void_v<ReturnType>) {
+    try {
+      func();
+    } catch (...) {
+      // void
+    }
+  } else {
+    try {
+      return std::optional<ReturnType>(func());
+    } catch (...) {
+      return std::nullopt;
     }
   }
 }
