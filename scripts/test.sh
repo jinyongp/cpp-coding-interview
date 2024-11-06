@@ -2,10 +2,10 @@
 
 cd "$(dirname "$0")/.."
 
-if [[ -z "$filter" ]]; then
-  filter="*"
-elif [[ "$filter" != *.* ]]; then
-  filter="${filter}.*"
+if [[ -z "$name" ]]; then
+  name="*"
+elif [[ "$name" != *.* ]]; then
+  name="${name}.*"
 fi
 
-./build/main --gtest_brief=1 --gtest_filter="$filter"
+./build/main --gtest_brief=1 --gtest_filter="$name"

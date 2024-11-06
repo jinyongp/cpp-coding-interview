@@ -3,7 +3,8 @@
 bin=build/examples
 
 if [ -z "$file" ]; then
-  echo "Usage: make run file=<file>"
+  command=$(basename $0 .sh)
+  echo "Usage: $command file=<file>"
   echo "Available files:"
   find $bin -type f | awk -F/ '{print "\t" $(NF)}'
   exit 1

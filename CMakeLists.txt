@@ -22,6 +22,8 @@ include(GoogleTest)
 enable_testing()
 
 include_directories(${PROJECT_SOURCE_DIR}/src)
+include_directories(${PROJECT_SOURCE_DIR}/includes)
+
 file(GLOB_RECURSE TEST_FILES ${PROJECT_SOURCE_DIR}/src/*.test.cc)
 add_executable(main ${TEST_FILES})
 target_link_libraries(main gtest_main)

@@ -1,9 +1,8 @@
 #ifndef _STACK_H_
 #define _STACK_H_
 
-#include <stdexcept>
-
 #include "stack.interface.h"
+#include "utils.h"
 
 /// _Stack<int, 3>()
 /// Create |     |     |     | -> top_: -1
