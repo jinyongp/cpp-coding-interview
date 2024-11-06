@@ -77,6 +77,10 @@ cat <<EOF > $name.interface.h
 
 class ${name^}Interface {
  public:
+  /// @brief 기본 생성자
+  ${name^}Interface() = default;
+
+  /// @brief 가상 소멸자
   virtual ~${name^}Interface() = default;
 };
 
