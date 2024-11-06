@@ -1,27 +1,21 @@
-#include "stack.h"
-
 #include <gtest/gtest.h>
 
+#ifdef DEV
 #include "stack.hint.h"
+#else
+#include "stack.h"
+#endif
 
 class stack : public ::testing::Test {
  protected:
   StackInterface<int, 3>* s0_;
-  StackInterface<utils::dummy, 3>* s1_;
 
   void SetUp() override {
-    if (utils::is_dev()) {
-      s0_ = new _Stack<int, 3>();
-      s1_ = new _Stack<utils::dummy, 3>();
-    } else {
-      s0_ = new Stack<int, 3>();
-      s1_ = new Stack<utils::dummy, 3>();
-    }
+    s0_ = new Stack<int, 3>();
   }
 
   void TearDown() override {
     delete s0_;
-    delete s1_;
   }
 };
 
@@ -80,24 +74,26 @@ TEST_F(stack, Clear) {
 
 TEST_F(stack, Reference) {
   loop(2) {
-    utils::range({.count = 3}, [this](int i) { s1_->Push(utils::dummy{i}); });
-    ASSERT_TRUE(s1_->Full());
+    auto s = new Stack<utils::dummy, 3>();
 
-    ASSERT_EQ(s1_->Top().value, 2) << "가장 나중에 넣은 항목을 조회합니다.";
-    s1_->Pop();  // 2
-    ASSERT_EQ(s1_->Top().value, 1) << "Pop 함수를 호출하면 가장 최근에 넣은 항목을 제거합니다.";
-    s1_->Pop();  // 1
-    ASSERT_EQ(s1_->Top().value, 0) << "Pop 함수를 호출하면 가장 최근에 넣은 항목을 제거합니다.";
-    s1_->Pop();  // 0
+    utils::range({.count = 3}, [s](int i) { s->Push(utils::dummy{i}); });
+    ASSERT_TRUE(s->Full());
 
-    ASSERT_TRUE(s1_->Empty()) << "모든 항목을 제거하면 스택이 비어있어야 합니다.";
-    ASSERT_THROW(s1_->Pop(), std::out_of_range);
-    ASSERT_THROW(s1_->Top(), std::out_of_range);
+    ASSERT_EQ(s->Top().value, 2) << "가장 나중에 넣은 항목을 조회합니다.";
+    s->Pop();  // 2
+    ASSERT_EQ(s->Top().value, 1) << "Pop 함수를 호출하면 가장 최근에 넣은 항목을 제거합니다.";
+    s->Pop();  // 1
+    ASSERT_EQ(s->Top().value, 0) << "Pop 함수를 호출하면 가장 최근에 넣은 항목을 제거합니다.";
+    s->Pop();  // 0
 
-    s1_->Push(utils::dummy{3});
-    ASSERT_EQ(s1_->Top().value, 3) << "가장 나중에 넣은 항목을 조회합니다.";
+    ASSERT_TRUE(s->Empty()) << "모든 항목을 제거하면 스택이 비어있어야 합니다.";
+    ASSERT_THROW(s->Pop(), std::out_of_range);
+    ASSERT_THROW(s->Top(), std::out_of_range);
 
-    s1_->Clear();
-    ASSERT_TRUE(s1_->Empty()) << "Clear 함수를 호출하면 스택이 비어있어야 합니다.";
+    s->Push(utils::dummy{3});
+    ASSERT_EQ(s->Top().value, 3) << "가장 나중에 넣은 항목을 조회합니다.";
+
+    s->Clear();
+    ASSERT_TRUE(s->Empty()) << "Clear 함수를 호출하면 스택이 비어있어야 합니다.";
   }
 }

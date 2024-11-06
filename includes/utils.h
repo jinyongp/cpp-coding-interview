@@ -32,10 +32,10 @@ class dummy {
   }
 };
 
-inline bool is_dev() {
-  const char* dev = std::getenv("DEV");
-  return dev && std::string(dev) == "true";
-}
+// inline bool is_dev() {
+//   const char* dev = std::getenv("DEV");
+//   return dev && std::string(dev) == "true";
+// }
 
 struct RangeArgs {
   int start = 0;

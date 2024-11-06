@@ -1,4 +1,4 @@
-.PHONY: help init build test dev list format run
+.PHONY: help init init_dev build test list format run
 
 BUILD=cmake --build build
 
@@ -14,7 +14,7 @@ help:
 
 init:
 	@rm -rf build
-	@cmake -S . -B build
+	@cmake -S . -B build -DDEV=$(dev)
 	@$(MAKE) build
 
 build:
@@ -22,10 +22,7 @@ build:
 
 test:
 	@$(MAKE) build 1>/dev/null
-	@DEV="$(dev)" ./scripts/test.sh
-
-dev:
-	@$(MAKE) test dev=true
+	@./scripts/test.sh
 
 list:
 	@$(MAKE) build 1>/dev/null
@@ -35,4 +32,11 @@ format:
 	@./scripts/format.sh
 
 run:
+	@$(MAKE) build 1>/dev/null
 	@./scripts/run.sh
+
+
+# DEV ONLY
+
+init_dev:
+	@$(MAKE) init dev=true

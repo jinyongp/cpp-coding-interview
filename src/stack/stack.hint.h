@@ -1,5 +1,5 @@
-#ifndef _STACK_H_
-#define _STACK_H_
+#ifndef STACK_H_
+#define STACK_H_
 
 #include "stack.interface.h"
 #include "utils.h"
@@ -15,13 +15,13 @@
 /// Pop    |     |     |     | -> top_: -1
 /// Pop    |     |     |     | -> out_of_range
 template <typename T, size_t SIZE>
-class _Stack : public StackInterface<T, SIZE> {
+class Stack : public StackInterface<T, SIZE> {
  private:
   T stack_[SIZE];  // 항목을 저장할 공간
   int top_;        // 가장 최근에 입력한 항목을 참조
 
  public:
-  _Stack() : top_{-1} {}
+  Stack() : top_{-1} {}
 
   void Push(const T &item) {
     if (Full()) {
@@ -60,4 +60,4 @@ class _Stack : public StackInterface<T, SIZE> {
   }
 };
 
-#endif  // _STACK_H_
+#endif  // STACK_H_

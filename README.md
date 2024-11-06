@@ -3,6 +3,7 @@
 ## 💬 Table of Contents <!-- omit in toc -->
 
 - [🌈 Directory Structure](#-directory-structure)
+- [🛸 Commands](#-commands)
 - [🎉 Getting Started](#-getting-started)
   - [🛠 Prerequisites](#-prerequisites)
   - [🧪 Pass All The Tests](#-pass-all-the-tests)
@@ -33,6 +34,29 @@ src
   - `*.test.cc`: 테스트 파일입니다.
 - 어떤 방식으로든 테스트를 통과하는 코드를 작성하면 됩니다.
 
+## 🛸 Commands
+
+```bash
+# 프로젝트 초기화
+$ make init
+
+# 모든 테스트 실행
+$ make test
+
+# 특정 테스트 실행
+$ make test name=stack
+$ make test name=stack.Push
+
+# 예시 코드 실행
+$ make run name=stack
+
+# 코드 스타일 가이드 적용
+$ make format
+
+# 도움말 출력
+$ make
+$ make help
+```
 ## 🎉 Getting Started
 
 ### Fork the project <!-- omit in toc -->
@@ -88,14 +112,14 @@ $ make
 4. 구현을 완료했다면, 테스트를 실행하여 작성한 소스 코드가 정상적으로 동작하는지 확인합니다.
    -  테스트를 수행하기 위해선 아래 두 가지 방법이 있습니다.
 
-      1. 터미널에서 아래 명령어를 실행합니다. (`filter` 인자를 전달하여 특정 테스트만 실행할 수 있습니다.)
+      1. 터미널에서 아래 명령어를 실행합니다. (`name` 인자를 전달하여 특정 테스트만 실행할 수 있습니다.)
 
          ```bash
          # 모든 stack 테스트 실행
-         $ make test filter='stack.*' 
+         $ make test name=stack
 
          # 특정 테스트만 실행
-         $ make test filter='stack.Push'
+         $ make test name=stack.Push
          ```
       2. VSCode 내 설치한 `matepek.vscode-catch2-test-adapter` Extension을 통해 테스트를 실행합니다.
    - 테스트 결과를 확인하고 모두 통과할 때까지 코드를 수정합니다.

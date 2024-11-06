@@ -35,6 +35,7 @@
   "clang.cxxflags": [
     "-std=c++20",
     "-I${workspaceRoot}/src",
+    "-I${workspaceRoot}/includes",
     "-I${workspaceRoot}/build/_deps/googletest-src/googletest/include",
     "-I${workspaceRoot}/build/_deps/googletest-src/googlemock/include"
   ],

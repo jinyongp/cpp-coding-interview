@@ -9,6 +9,13 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_BUILD_TYPE RelWithDebInfo)
 
+option(DEV "Build with development settings" OFF)
+
+if(DEV)
+  add_definitions(-DDEV)
+  message(STATUS "Building with development settings")
+endif()
+
 include(FetchContent)
 FetchContent_Declare(
   googletest
