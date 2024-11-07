@@ -1,26 +1,24 @@
 #!/usr/bin/env bash
 
-if [ -z $name ]; then
-  command=$(basename $0 .sh)
+set -e
+
+if [ -z "$name" ]; then
+  command=$(basename "$0" .sh)
   echo "Usage: $command name=<name>"
   exit 1
 fi
 
-cd $(dirname $0)/../src
+cd "$(dirname "$0")"/../src
 
-mkdir -p $name
-cd $name
+mkdir -p "$name"
+cd "$name"
 
-# README.md
-# $name.cc
-# $name.h
-# $name.hint.h
-# $name.interface.h
-# $name.test.cc
+snake_case=$(perl -pe 's/([a-z0-9])([A-Z])/$1_\L$2/g' <<< "$name" | tr '[:upper:]' '[:lower:]')
+PascalCase=$(perl -pe 's/(^|_)([a-z])/\U$2/g' <<< "$snake_case")
 
-echo "# ${name^} <kbd>[Pass Me](./$name.h)</kbd>" > README.md
+echo "# ${PascalCase} <kbd>[Pass Me](./$name.h)</kbd>" > README.md
 
-cat <<EOF > $name.cc
+cat <<EOF > $snake_case.cc
 #include <iostream>
 
 using namespace std;
@@ -32,15 +30,15 @@ int main() {
 }
 EOF
 
-cat <<EOF > $name.h
-#ifndef ${name^^}_H_
-#define ${name^^}_H_
+cat <<EOF > $snake_case.h
+#ifndef ${snake_case^^}_H_
+#define ${snake_case^^}_H_
 
-#include "${name}.interface.h"
+#include "${snake_case}.interface.h"
 #include "utils.h"
 
 /// @brief Description
-class ${name^} : public ${name^}Interface {
+class ${PascalCase} : public ${PascalCase}Interface {
  private:
   // private members
 
@@ -48,17 +46,17 @@ class ${name^} : public ${name^}Interface {
   // public methods
 };
 
-#endif  // ${name^^}_H_
+#endif  // ${snake_case^^}_H_
 EOF
 
-cat <<EOF > $name.hint.h
-#ifndef ${name^^}_H_
-#define ${name^^}_H_
+cat <<EOF > $snake_case.hint.h
+#ifndef ${snake_case^^}_H_
+#define ${snake_case^^}_H_
 
-#include "${name}.interface.h"
+#include "${snake_case}.interface.h"
 #include "utils.h"
 
-class ${name^} : public ${name^}Interface {
+class ${PascalCase} : public ${PascalCase}Interface {
  private:
   // private members
 
@@ -66,44 +64,44 @@ class ${name^} : public ${name^}Interface {
   // public methods
 };
 
-#endif  // ${name^^}_H_
+#endif  // ${snake_case^^}_H_
 EOF
 
-cat <<EOF > $name.interface.h
-#ifndef ${name^^}_INTERFACE_H_
-#define ${name^^}_INTERFACE_H_
+cat <<EOF > $snake_case.interface.h
+#ifndef ${snake_case^^}_INTERFACE_H_
+#define ${snake_case^^}_INTERFACE_H_
 
 #include <cstddef>
 
-class ${name^}Interface {
+class ${PascalCase}Interface {
  public:
   /// @brief 기본 생성자
-  ${name^}Interface() = default;
+  ${PascalCase}Interface() = default;
 
   /// @brief 가상 소멸자
-  virtual ~${name^}Interface() = default;
+  virtual ~${PascalCase}Interface() = default;
 };
 
-#endif  // ${name^^}_INTERFACE_H_
+#endif  // ${snake_case^^}_INTERFACE_H_
 EOF
 
-cat <<EOF > $name.test.cc
+cat <<EOF > $snake_case.test.cc
 #include <gtest/gtest.h>
 
 #ifdef DEV
-#include "${name}.hint.h"
+#include "${snake_case}.hint.h"
 #else
-#include "${name}.h"
+#include "${snake_case}.h"
 #endif
 
-class ${name} : public ::testing::Test {
+class ${snake_case} : public ::testing::Test {
  protected:
   void SetUp() override {}
 
   void TearDown() override {}
 };
 
-TEST_F(${name}, Test) {
+TEST_F(${snake_case}, Test) {
   ASSERT_TRUE(true);
 }
 EOF
